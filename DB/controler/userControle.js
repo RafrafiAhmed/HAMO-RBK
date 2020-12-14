@@ -1,17 +1,16 @@
+var { Model } = require("../models/userModel.js");
 
-var {Model} = require('../models/userModel.js')
-
-var findone=function(user,callbacks){
-    Model.find({username:user}).exec(callbacks)
-}
-var creatone=function({username,password},callbacks){
-    const user=new Model({
-        username:username ,
-          password: password,
-          role: 'register',
-          attempt:true 
-    })
-    user.creatone(user).exec(callbacks)
-}
-module.exports.findone=findone;
-module.exports.creatone=creatone;
+var findAll = function (user, callbacks) {
+  Model.find(user).exec(callbacks);
+};
+var creatone = function (username, password, callbacks) {
+  const user = new Model({
+    username: username,
+    password: password,
+    role: "register",
+    attempt: true
+  });
+  user.save(callbacks);
+};
+module.exports.findAll = findAll;
+module.exports.creatone = creatone;
